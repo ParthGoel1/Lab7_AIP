@@ -120,6 +120,26 @@ def normalise_question(question: str) -> str:
 def get_sources(citations: list[Citation]) -> list[str]:
     return list(dict.fromkeys(c.doc_id for c in citations))
 
+def semantic_cache_signature(question: str):
+    q = normalise_question(question)
+
+    plans = frozenset(
+        re.findall(
+            r"\b(bronze|silver|gold|platinum|senior)\b",
+            q
+        )
+    )
+
+    numbers = tuple(sorted(
+        value.replace(",", "")
+        for value in re.findall(
+            r"\b\d[\d,]*(?:\.\d+)?\b",
+            q
+        )
+    ))
+
+    return plans, numbers
+
 
 @app.post("/ask", response_model=AskResponse)
 def ask(req: AskRequest) -> AskResponse:
@@ -204,6 +224,9 @@ def ask(req: AskRequest) -> AskResponse:
 
                     # Do not mix responses created with different top_k.
                     if entry["top_k"] != req.top_k:
+                        continue
+
+                    if (semantic_cache_signature(entry["question"])!= semantic_cache_signature(req.question)):
                         continue
 
                     score = float(
