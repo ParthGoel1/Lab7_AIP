@@ -3,7 +3,7 @@
 # never fires. Aim for roughly one standard error of headroom.
 #
 # Note that cost and latency have gates too. They regress silently otherwise.
-correctness:        {min: 0.75}
+correctness:        {min: 0.99}
 faithfulness:       {min: 0.90}
 citation_validity:  {min: 0.98}
 refusal_recall:     {min: 0.80}
