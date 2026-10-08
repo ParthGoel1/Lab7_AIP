@@ -82,6 +82,8 @@ Rules, in priority order:
    Do not omit a requested condition, comparison, or plan-specific detail.
 
 7. Be concise. Two or three sentences unless the question needs more.
+
+{UNTRUSTED_SYSTEM_CLAUSE}
 """
 
 ANSWER_SYSTEM_STRICT = f"""\
@@ -232,6 +234,8 @@ Sources:
         system=ANSWER_SYSTEM,
         tier=tier,
         return_full=True,
+        reasoning_effort = 'low',
+        max_tokens=1024
     )
 
     text = response["text"]
@@ -280,6 +284,8 @@ Every factual answer must contain citations.
             system=ANSWER_SYSTEM,
             tier=tier,
             return_full=True,
+            reasoning_effort = 'low', 
+            max_tokens=1024
         )
 
         text = response["text"]
@@ -385,7 +391,7 @@ def answer_with_gold_context(question: str, gold_docs: list[str], *,
         prompt,
         system=ANSWER_SYSTEM,
         tier=tier,
-        return_full=True
+        return_full=True,
     )
 
     text = response["text"]

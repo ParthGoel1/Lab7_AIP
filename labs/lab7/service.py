@@ -108,6 +108,7 @@ class AskResponse(BaseModel):
     answer: str
     refused: bool
     citations: list[Citation]
+    sources: list[str]
     latency_ms: float
     cost_usd: float
     cached: bool
@@ -115,6 +116,9 @@ class AskResponse(BaseModel):
 
 def normalise_question(question: str) -> str:
     return " ".join(question.lower().split())
+
+def get_sources(citations: list[Citation]) -> list[str]:
+    return list(dict.fromkeys(c.doc_id for c in citations))
 
 
 @app.post("/ask", response_model=AskResponse)
@@ -137,9 +141,9 @@ def ask(req: AskRequest) -> AskResponse:
             # B1: exact response cache
             # --------------------------------------------------
 
-            
             span["cached"] = False
             span["cache_type"] = "miss"
+
             cache_request = {
                 "question": normalise_question(req.question),
                 "top_k": req.top_k,
@@ -164,13 +168,16 @@ def ask(req: AskRequest) -> AskResponse:
                         time.perf_counter() - t0
                     ) * 1000
 
+                    cached_citations = [
+                        Citation(**c)
+                        for c in cached_response["citations"]
+                    ]
+
                     return AskResponse(
                         answer=cached_response["answer"],
                         refused=cached_response["refused"],
-                        citations=[
-                            Citation(**c)
-                            for c in cached_response["citations"]
-                        ],
+                        citations=cached_citations,
+                        sources=get_sources(cached_citations),
                         latency_ms=round(latency_ms, 1),
                         cost_usd=0.0,
                         cached=True,
@@ -218,21 +225,26 @@ def ask(req: AskRequest) -> AskResponse:
                     ) * 1000
 
                     cost_after = budget.spent_usd
+
                     request_cost = (
                         cost_after - cost_before
                     )
 
                     response = best_match["response"]
+
                     span["cached"] = True
                     span["cache_type"] = "semantic"
+
+                    semantic_citations = [
+                        Citation(**c)
+                        for c in response["citations"]
+                    ]
 
                     return AskResponse(
                         answer=response["answer"],
                         refused=response["refused"],
-                        citations=[
-                            Citation(**c)
-                            for c in response["citations"]
-                        ],
+                        citations=semantic_citations,
+                        sources=get_sources(semantic_citations),
                         latency_ms=round(latency_ms, 1),
                         cost_usd=round(
                             request_cost,
@@ -294,6 +306,7 @@ def ask(req: AskRequest) -> AskResponse:
             ) * 1000
 
             cost_after = budget.spent_usd
+
             request_cost = (
                 cost_after - cost_before
             )
@@ -337,6 +350,7 @@ def ask(req: AskRequest) -> AskResponse:
             answer=answer_text,
             refused=refused,
             citations=citations,
+            sources=get_sources(citations),
             latency_ms=round(latency_ms, 1),
             cost_usd=round(request_cost, 6),
             cached=False,
@@ -373,9 +387,16 @@ def ask(req: AskRequest) -> AskResponse:
 
 @app.get("/health")
 def health() -> dict:
-    """TODO C: index size, model profile, cache stats, uptime."""
-    return {"status": "ok", "uptime_s": round(time.time() - _STARTED, 1),
-            "cache": cache.stats()}
+
+    p = pipeline()
+
+    return {
+        "status": "ok",
+        "uptime_s": round(time.time() - _STARTED, 1),
+        "index_size": len(p["retriever"].chunks),
+        "model": llm.resolve_model("MAIN"),
+        "cache": cache.stats(),
+    }
 
 
 def read_todays_traces() -> list[dict]:
