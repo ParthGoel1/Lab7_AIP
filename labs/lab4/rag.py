@@ -182,7 +182,7 @@ def answer_question(
     hybrid_retriever=None,
     *,
     k: int = 12,
-    final_k: int = 1,
+    final_k: int = 5,
     reranker=None,
     tier: str = "MAIN",
 ) -> Answer:
