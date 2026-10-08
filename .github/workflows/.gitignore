@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+
+# Secrets / local config
+.env
+
+# Editor
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local traces
+.aip_traces/
+
+# Vector DB / generated indexes
+.chroma/
+.chroma_d3/
+.chroma_large/
+.chroma_medium/
+.chroma_small/
+
+# Misc
+*.log

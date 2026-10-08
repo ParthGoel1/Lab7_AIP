@@ -1,0 +1,101 @@
+[
+  {
+    "id": "Q01",
+    "kind": "single_hop",
+    "mode": 2,
+    "mode_name": "chunk_boundary",
+    "evidence": "needs_human_check: relevant document reached final context; inspect the actual chunks and distractors",
+    "question": "How many days do I have to submit a reimbursement claim after discharge?",
+    "answer": "For standard plans, you must submit a reimbursement claim within 30 days of discharge [1][2]. For group corporate plans, the submission window is 60 days from discharge [5]. (Note: An archived 2024 rule previously specified 15 days from the date of discharge [3].)"
+  },
+  {
+    "id": "Q04",
+    "kind": "single_hop",
+    "mode": 2,
+    "mode_name": "chunk_boundary",
+    "evidence": "needs_human_check: relevant document reached final context; inspect the actual chunks and distractors",
+    "question": "What is the waiting period for pre-existing diseases?",
+    "answer": "For retail plans, pre-existing diseases carry a 36-month waiting period unless explicitly waived in writing [3][5]. Under the Aurora Senior Care plan for ages 60 and above, the waiting period for pre-existing diseases is reduced to 24 months [5]. Waiting periods run continuously from the date of fir"
+  },
+  {
+    "id": "Q11",
+    "kind": "single_hop",
+    "mode": 6,
+    "mode_name": "generation",
+    "evidence": "answer still wrong even with gold context",
+    "question": "How much ambulance cover is there?",
+    "answer": "All plans include road ambulance cover of ₹5,000 per hospitalisation [1]. Additionally, the Aurora Gold plan covers air ambulance up to ₹2,50,000 per policy year within India on prior authorisation [5]."
+  },
+  {
+    "id": "Q20",
+    "kind": "multi_hop",
+    "mode": 6,
+    "mode_name": "generation",
+    "evidence": "answer still wrong even with gold context",
+    "question": "My mother is 63 and I want to add her to my policy. Which plans allow it and what changes?",
+    "answer": "Dependent parents can be added to the Silver plan (at an extra premium), Gold plan, and Platinum plan, but cannot be added to the Bronze plan [1]. When adding a parent, the policy premium is determined by the age of the eldest member covered, which often costs more than an individual senior-citizen "
+  },
+  {
+    "id": "Q23",
+    "kind": "multi_hop",
+    "mode": 2,
+    "mode_name": "chunk_boundary",
+    "evidence": "needs_human_check: relevant document reached final context; inspect the actual chunks and distractors",
+    "question": "Can I get an out-patient physiotherapy session reimbursed on Bronze?",
+    "answer": "The out-patient benefit (OPD rider) is not available on the Bronze plan [1]. However, the provided sources do not specifically mention out-patient physiotherapy, so whether it can be reimbursed cannot be fully answered from the provided sources [1][3]."
+  },
+  {
+    "id": "Q26",
+    "kind": "multi_hop",
+    "mode": 6,
+    "mode_name": "generation",
+    "evidence": "answer still wrong even with gold context",
+    "question": "Is knee replacement covered immediately after I buy the policy?",
+    "answer": "No, knee replacement is not covered immediately for general conditions, as it is subject to a 24-month waiting period [1][5]. However, if the knee replacement is required following an accident, it is covered immediately from day one [1][2][5]."
+  },
+  {
+    "id": "Q29",
+    "kind": "trap_archived",
+    "mode": 2,
+    "mode_name": "chunk_boundary",
+    "evidence": "needs_human_check: relevant document reached final context; inspect the actual chunks and distractors",
+    "question": "How many days do I have to respond to a query Aurora raises on my claim?",
+    "answer": "The deadline to respond depends on the type of claim:\n\n* For general reimbursement claims, you have 45 days from the date of the query to respond, after which Aurora closes the claim [2][5].\n* For motor insurance claims, you have 30 days from the date of the query to respond [4]."
+  },
+  {
+    "id": "Q32",
+    "kind": "aggregation",
+    "mode": 2,
+    "mode_name": "chunk_boundary",
+    "evidence": "needs_human_check: relevant document reached final context; inspect the actual chunks and distractors",
+    "question": "Which plans have no co-payment?",
+    "answer": "The Aurora Gold plan has no co-payment at any age [1]. Additionally, the Aurora Silver plan has no co-payment for insured members below the age of 60 [2]."
+  },
+  {
+    "id": "Q35",
+    "kind": "aggregation",
+    "mode": 2,
+    "mode_name": "chunk_boundary",
+    "evidence": "needs_human_check: relevant document reached final context; inspect the actual chunks and distractors",
+    "question": "List everything that is excluded relating to dental treatment.",
+    "answer": "Under the policy, dental treatment and oral surgery are excluded unless necessitated by an accidental injury requiring hospitalisation [2][3]. Additionally, out-patient dental work is noted as not covered by any plan [1]."
+  },
+  {
+    "id": "Q37",
+    "kind": "unanswerable",
+    "mode": 4,
+    "mode_name": "ranking",
+    "evidence": "relevant document found in top 30 but not in final context",
+    "question": "Does Aurora cover treatment in Singapore, and up to what limit?",
+    "answer": "I don't have enough information in the provided sources to answer that."
+  },
+  {
+    "id": "Q44",
+    "kind": "paraphrase",
+    "mode": 2,
+    "mode_name": "chunk_boundary",
+    "evidence": "needs_human_check: relevant document reached final context; inspect the actual chunks and distractors",
+    "question": "AUR-HI-SIL-2026 — what are the sum insured options?",
+    "answer": "I don't have enough information in the provided sources to answer that."
+  }
+]
