@@ -9,7 +9,14 @@ Requires the service to be running:
 The one non-negotiable UI requirement: **citations must be expandable to show
 the source text.** Grounding the user cannot check is decoration.
 """
+
 from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
 
 import requests
 import streamlit as st
@@ -23,11 +30,12 @@ st.caption("Answers come only from Aurora's policy documents. "
 
 q = st.text_input("Ask a question",
                   placeholder="How long do I have to file a reimbursement claim?")
+mode = st.selectbox("Mode", ["rag", "tools"])
 
 if st.button("Ask", type="primary") and q:
     with st.spinner("thinking"):
         try:
-            r = requests.post(f"{API}/ask", json={"question": q}, timeout=60)
+            r = requests.post(f"{API}/ask", json={"question": q, "mode" : mode}, timeout=60)
             r.raise_for_status()
             data = r.json()
         except requests.HTTPError as exc:

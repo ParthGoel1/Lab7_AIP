@@ -281,9 +281,11 @@ def ask(req: AskRequest) -> AskResponse:
             # No cache hit -> run normal pipeline
             # --------------------------------------------------
 
-            p = pipeline()
+
 
             if req.mode == "rag":
+
+                p = pipeline()
 
                 result = answer_question(
                     req.question,
@@ -309,12 +311,13 @@ def ask(req: AskRequest) -> AskResponse:
                 refused = result.refused
 
             else:
-
                 result = run_agent(
                     req.question,
-                    guard=p["guard"],
-                    layers={1, 2, 3, 5},
-                )
+                    guard=ToolGuard(
+                        max_calls=3,
+                        allow={"search_policy","get_policy_details","compute_premium"},),
+                        layers={1, 2, 3, 5},
+                        )
 
                 answer_text = result["answer"]
                 refused = False

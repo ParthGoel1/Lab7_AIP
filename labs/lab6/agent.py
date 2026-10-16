@@ -402,8 +402,9 @@ def run_agent(
                 }
             ],
             schema=StructuredAnswer,
-            tier=tier,
+            tier='SMALL',
             temperature=0.0,
+            reasoning_effort = 'low'
         )
 
         return structured_result.answer
@@ -436,6 +437,7 @@ def run_agent(
                     tier=tier,
                     return_full=True,
                     temperature=0.0,
+                    reasoning_effort = "low"
                 )
 
                 tool_calls = response["tool_calls"]
@@ -574,6 +576,7 @@ def run_agent(
                         tier=tier,
                         return_full=True,
                         temperature=0.0,
+                        reasoning_effort = 'low'
                     )
 
                     final_answer = apply_structured_output(
