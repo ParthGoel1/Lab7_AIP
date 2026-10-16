@@ -1,0 +1,21 @@
+sample,question_number,question,latency_ms,cost_usd,cached,refused,run_id
+low_A,1,"Compare cataract surgery limits for Bronze, Silver and Gold plans.",6328.5,0.00119,false,false,
+low_A,2,"What happens to the accumulated no-claim bonus on Gold after a claim?",2939.3,0.00062,false,false,
+low_A,3,"Explain the restoration benefit on Gold for repeat hospitalisations.",5039.2,0.00102,false,false,
+low_A,4,"Under what circumstances can room-rent proportionate deductions apply on Silver?",5824.3,0.00136,false,false,
+low_A,5,"What is the difference between claim notification and reimbursement submission deadlines?",4346.9,0.00118,false,false,
+low_A,6,"How do pre-existing disease waiting periods differ between Senior Care and regular plans?",3060.2,0.00069,false,false,
+low_A,7,"What is covered for mental health hospitalisation, including applicable waiting periods?",4912.6,0.00111,false,false,
+low_A,8,"Explain how post-hospitalisation expenses must be submitted after discharge.",3209.1,0.00090,false,false,
+low_A,9,"How does the grievance escalation process work when Aurora does not respond?",2636.3,0.00086,false,false,
+low_A,10,"Can someone claim maternity benefits under Bronze, Silver, and a top-up plan?",5300.3,0.00122,false,false,
+low_B,1,"How does Aurora Gold restoration work after multiple claims?",6729.9,0.000674,false,,20261008-154047
+low_B,2,"Compare room rent limits across Bronze, Silver and Gold.",2569.7,0.000919,false,,20261008-154047
+low_B,3,"What happens if a policyholder misses the annual renewal grace period?",3533.4,0.000723,false,,20261008-154047
+low_B,4,"Which conditions apply to emergency cashless hospitalisation?",3369.5,0.000805,false,,20261008-154047
+low_B,5,"Compare maternity coverage across Bronze, Silver and Gold.",3682.6,0.001073,false,,20261008-154047
+low_B,6,"How do waiting periods change when porting a health insurance policy?",3302.5,0.000837,false,,20261008-154047
+low_B,7,"What happens when a hospital is on Aurora's excluded provider list?",2817.2,0.000725,false,,20261008-154047
+low_B,8,"How does Aurora calculate the no-claim bonus on Silver?",5679.7,0.001203,false,,20261008-154047
+low_B,9,"What is the procedure for appealing a rejected reimbursement claim?",7691.3,0.001695,false,,20261008-154047
+low_B,10,"Compare cataract surgery limits on Aurora's health insurance plans.",6993.4,0.001572,false,,20261008-154047

@@ -1,0 +1,6 @@
+configuration,n,uncached,p50_ms,p95_ms,avg_serving_cost_usd,comments
+MAIN medium 1024,10,true,4585.0,9861.1,,Original benchmark on a different question set
+SMALL default 1024,10,true,5930.5,10018.0,0.0022998,Different question set
+MAIN medium 512,10,true,5907.1,14302.8,0.002741,Truncation and repair observed; reverted
+MAIN low 1024 first,10,true,4629.8,6101.6,0.001015,One query above 6000ms
+MAIN low 1024 second,10,true,3609.1,7378.2,0.0010226,Three queries above 6000ms; run_id 20261008-154047
